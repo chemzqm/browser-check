@@ -11,7 +11,9 @@
 
 ## API
 
+###browser-check(name)
 
+Show the dialog element with `name`.
 
 ## License
 
