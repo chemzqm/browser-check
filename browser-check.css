@@ -1,0 +1,51 @@
+.browser-check {
+  border-radius: 5px;
+  position: absolute;
+  border: 1px solid #eee;
+  background: white;
+  z-index: 1000;
+  left: 50%;
+  top: 150px;
+  margin-left: -206px;
+  padding: 15px;
+}
+
+.browser-check .browser-check-body {
+  margin-top: 10px;
+}
+
+.browser-check .browser-check-body ul {
+  overflow: hidden;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.browser-check .browser-check-body li {
+  display: block;
+  float: left;
+}
+
+.browser-check .browser-check-body li a{
+  text-align: center;
+  display: block;
+  text-decoration: none;
+  color: #09c;
+  width: 124px;
+}
+
+.browser-check .browser-check-body li a:active{
+  color: #f60;
+}
+
+.browser-check .browser-check-body li a:hover{
+  text-decoration: underline;
+}
+
+.browser-check .browser-check-body li img{
+  height: 77px;
+  width: 77px;
+  border: none;
+}
+.browser-check .browser-check-body li span{
+  display: block;
+}

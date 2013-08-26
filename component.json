@@ -1,0 +1,21 @@
+{
+  "name": "browser-check",
+  "repo": "chemzqm/browser-check",
+  "description": "check the browser and show the dialog",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "component/domify": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+    "index.js",
+    "template.js"
+  ],
+  "styles": [
+    "browser-check.css"
+  ],
+  "remotes": []
+}
