@@ -4,15 +4,12 @@
   "description": "check the browser and show the dialog",
   "version": "0.0.1",
   "keywords": [],
-  "dependencies": {
-    "component/domify": "*"
-  },
+  "dependencies": {},
   "development": {},
   "license": "MIT",
   "main": "index.js",
   "scripts": [
-    "index.js",
-    "template.js"
+    "index.js"
   ],
   "styles": [
     "browser-check.css"

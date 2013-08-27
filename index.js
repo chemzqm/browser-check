@@ -1,62 +1,4 @@
-if (!Array.prototype.forEach) {
-  Array.prototype.forEach = function(fn, scope) {
-    'use strict';
-    var i, len;
-    for (i = 0, len = this.length; i < len; ++i) {
-      if (i in this) {
-        fn.call(scope, this[i], i, this);
-      }
-    }
-  };
-}
-
-if (!Function.prototype.bind) {
-  Function.prototype.bind = function (oThis) {
-    if (typeof this !== "function") {
-      // closest thing possible to the ECMAScript 5 internal IsCallable function
-      throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
-    }
-
-    var aArgs = Array.prototype.slice.call(arguments, 1), 
-        fToBind = this, 
-        fNOP = function () {},
-        fBound = function () {
-          return fToBind.apply(this instanceof fNOP && oThis
-                                 ? this
-                                 : oThis,
-                               aArgs.concat(Array.prototype.slice.call(arguments)));
-        };
-
-    fNOP.prototype = this.prototype;
-    fBound.prototype = new fNOP();
-
-    return fBound;
-  };
-}
-
-if(!Array.isArray) {
-  Array.isArray = function (vArg) {
-    return Object.prototype.toString.call(vArg) === "[object Array]";
-  };
-}
-
-// ----------------------------------------------------------
-// A short snippet for detecting versions of IE in JavaScript
-// without resorting to user-agent sniffing
-// ----------------------------------------------------------
-// If you're not in IE (or IE version is less than 5) then:
-// ie === undefined
-// If you're in IE (>=5) then you can determine which version:
-// ie === 7; // IE7
-// Thus, to detect IE:
-// if (ie) {}
-// And to detect the version:
-// ie === 6 // IE6
-// ie > 7 // IE8, IE9 ...
-// ie < 9 // Anything less than IE9
-// ----------------------------------------------------------
-
-// UPDATE: Now using Live NodeList idea from @jdalton
+(function () {
 
 var ie = (function(){
 
@@ -74,13 +16,21 @@ var ie = (function(){
 
 }());
 
-var domify = require('domify');
-var template = require('./template');
+var template = '<div class="title">提示</div>\n  <div class="browser-check-body">\n  <p>\n    {name} 不支持您当前使用的浏览器，请使用以下浏览器\n  </p>\n  <ul>\n    <li>\n      <a target="_blank" href="http://www.google.com/chrome/index.html?hl=zh_cn&brand=CHMA&utm_campaign=zh_cn&utm_source=zh_cn-ha-apac-zh_cn-bk&utm_medium=ha">\n      <img src="https://i.alipayobjects.com/e/201210/1W6Fh192H6.jpg" alt="" />\n      <span>Chrome</span>\n      </a>\n    </li>\n    <li>\n      <a target="_blank" href="http://firefox.com.cn/">\n      <img src="https://i.alipayobjects.com/e/201210/1W6FH63eku.jpg" alt="" />\n      <span>Firefox</span>\n      </a>\n    </li>\n    <li>\n      <a target="_blank" href="http://www.apple.com.cn/safari/">\n        <img src="https://i.alipayobjects.com/e/201207/35EupGflAf.jpg" alt="" />\n        <span>Safari</span>\n      </a>\n    </li>\n  </ul>\n  </div>\n';
 
-module.exports = function(name) {
+function showDialog (name) {
   if (!ie) return false;
   var html = template.replace(/\{name\}/g, name);
-  var el = domify(html);
+  var el = document.createElement('div');
+  el.className = 'browser-check';
+  el.innerHTML = html;
   document.body.appendChild(el);
   return true;
 }
+
+if (typeof module !== "undefined" && typeof exports !== "undefined") {
+  module.exports = showDialog;
+} else {
+  window.showBrowsersDialog = showDialog;
+}
+})();
