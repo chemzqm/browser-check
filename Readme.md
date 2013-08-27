@@ -1,20 +1,7 @@
-
 # browser-check
 
-  check the browser and show the dialog
+检测用户浏览器，如果是旧IE则显示一个弹出层让用户下在最新的现代浏览器
 
-## Installation
+### API
 
-  Install with [component(1)](http://component.io):
-
-    $ component install chemzqm/browser-check
-
-## API
-
-###browser-check(name)
-
-Show the dialog element with `name`.
-
-## License
-
-  MIT
+`showBrowsersDialog(name)` name为应用名称
