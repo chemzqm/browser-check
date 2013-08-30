@@ -33,7 +33,7 @@ function position () {
 }
 
 function showDialog (name) {
-  if (ie) return false;
+  if (!ie) return false;
   var html = template.replace(/\{name\}/g, name);
   var el = document.createElement('div');
   el.className = 'browser-check';
