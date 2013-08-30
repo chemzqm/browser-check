@@ -10,6 +10,13 @@
   padding: 15px;
 }
 
+.browser-check-modal {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #fff;
+}
+
 .browser-check .browser-check-body {
   margin-top: 10px;
 }
