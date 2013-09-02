@@ -1,5 +1,20 @@
 (function () {
 
+function getInternetExplorerVersion()
+// Returns the version of Windows Internet Explorer or a -1
+// (indicating the use of another browser).
+{
+   var rv = -1; // Return value assumes failure.
+   if (navigator.appName == 'Microsoft Internet Explorer')
+   {
+      var ua = navigator.userAgent;
+      var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+      if (re.exec(ua) != null)
+         rv = parseFloat( RegExp.$1 );
+   }
+   return rv;
+}
+
 var ie = (function(){
 
     var undef,
@@ -32,8 +47,17 @@ function position () {
     }
 }
 
-function showDialog (name) {
+/**
+ * 
+ * @param {String} name 应用名称
+ * @param {Number} version 最低支持的ie版本
+ * @return {Boolean} 如果是不能支持的ie返回true，否则返回false
+ * @api public
+ */
+function showDialog (name, version) {
   if (!ie) return false;
+  var ieVer = getInternetExplorerVersion();
+  if (version && ieVer >= version) return false;
   var html = template.replace(/\{name\}/g, name);
   var el = document.createElement('div');
   el.className = 'browser-check';
